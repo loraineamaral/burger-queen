@@ -34,11 +34,13 @@ class Hall extends React.Component {
   }
 
   componentDidMount() {
-    database.collection('users').get()
-    .then((querySnapshot) => {
-      const data = querySnapshot.docs.map(doc => doc.data());
-      this.setState({ listItem: data });  
-      })
+    firebase.auth().onAuthStateChanged(user => {
+      database.collection('users').doc(user.uid).get()
+        .then((querySnapshot) => {
+          const name = querySnapshot.data().name
+          this.setState({ name: name });
+        });
+    })
   }
 
   addItem = (item) => {
@@ -88,18 +90,6 @@ class Hall extends React.Component {
 
   sendOrder = (event) => {
     event.preventDefault();
-  //   database.collection("users").doc.get
-  //   if(resp) {
-  //     const id = resp.user.uid;
-  //     database.collection("users").doc(id).get({
-  //       name: this.state.name,
-     
-  //     })
-  //       .then(() => {
-  //        console.log(id)
-  //       });
-  // }
-
     if (this.state.client === "") {
       alert("Insira o nome do cliente")
     } else {
@@ -135,7 +125,7 @@ class Hall extends React.Component {
             </Col>
 
             <Col className="ml-1 p-0">
-              <Card className="bg-grey">
+              <Card className="">
                 <Card.Body>
                   <p className="red-text ml-2 mt-1">Pedido</p>
 
