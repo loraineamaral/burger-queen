@@ -84,7 +84,6 @@ class Kitchen extends React.Component {
 
           </Row>
         </Container>
-
       </div>
     );
   }
