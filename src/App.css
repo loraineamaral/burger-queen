@@ -10,7 +10,7 @@
 
  .red-text{
   font-family: 'Acme', sans-serif;
-  color: rgb(144, 0, 0);
+  color: rgb(144, 0, 0)!important;
  }
 
  .white-text{
@@ -18,13 +18,67 @@
   color: white
  }
 
+ .grey-text{
+  font-family: 'Lato', sans-serif;
+  color:rgb(73, 80, 87)
+ }
+
+ .grey-text-regular{
+   font-family: 'Lato';
+   color: rgb(73, 80, 87);
+   font-weight: bold;
+ }
+
  .bg-red{
   background-color: rgb(144, 0, 0);
+ }
+
+ .bg-grey{
+   background-color:  rgb(242, 244, 247)
  }
 
 .bg-white{
   background-color: white;
 }
-/* .radio-menu{
-  border: 1px solid white;
-} */
+
+.div-height{
+  height: 100%;
+}
+
+.img-size{
+  width: 100px;
+  height: 100px;  
+}
+
+.text-small{
+  font-size: 0.8rem;
+}
+
+.text-large{
+  font-size: 1.2rem;
+}
+
+.btn-border{
+  border: 2px solid rgb(144, 0, 0);
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.nav-tabs a  {
+  color: rgb(144, 0, 0);
+}
+
+.border-card{
+  border: 2px solid rgb(73, 80, 87);
+}
+
+.input-border{
+  border: none;
+  border-bottom: 2px solid rgb(73, 80, 87);
+  color: black
+  
+}
+
+::placeholder{
+  color: rgb(73, 80, 87);  
+}
