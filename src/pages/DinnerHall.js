@@ -20,7 +20,6 @@ class Hall extends React.Component {
     };
   }
 
-
   handleChange = (event, element) => {
     event.preventDefault();
     const newState = this.state;
@@ -63,6 +62,7 @@ class Hall extends React.Component {
       this.setState({
         order: newOrder
       });
+
     }
   }
 
@@ -87,6 +87,8 @@ class Hall extends React.Component {
       });
     }
   }
+    }
+  }
 
   sendOrder = (event) => {
     event.preventDefault();
@@ -94,6 +96,7 @@ class Hall extends React.Component {
       alert("Insira o nome do cliente")
     } else {
       database.collection("orders").add({
+        name: this.state.name,
         client: this.state.client,
         order: this.state.order
       })
@@ -137,7 +140,9 @@ class Hall extends React.Component {
                       <Table size="sm">
 
                         <tbody>
-                          <tr className="grey-text-reg text-small">
+
+                          <tr className="grey-text text-small">
+
                             <td className="text-left col-md-8" key={i}>{product.nome} </td>
                             <td className="text-cente col-md-2" key={j}>{product.quantity}</td>
                             <td className="text-right col-md-2" key={k}>{product.preco * product.quantity},00</td>

@@ -11,12 +11,12 @@ import foto14 from "../assets/img/14.jpg";
 
 const regularMenu = [
   {
-    nome: "Hambúrguer simples",
+    nome: "Burguer simples",
     preco: 10.00,
     foto: foto5
   },
   {
-    nome: "Hambúrguer duplo",
+    nome: "Burguer duplo",
     preco: 15.00,
     foto: foto6
   },
