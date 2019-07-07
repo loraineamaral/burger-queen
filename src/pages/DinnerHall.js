@@ -16,7 +16,8 @@ class Hall extends React.Component {
     this.state = {
       order: [],
       client: '',
-      name: ''
+      name: '',
+      date: new Date().toLocaleString()
     };
   }
 
@@ -37,7 +38,9 @@ class Hall extends React.Component {
       database.collection('users').doc(user.uid).get()
         .then((querySnapshot) => {
           const name = querySnapshot.data().name
-          this.setState({ name: name });
+          this.setState({
+            name: name,
+          });
         });
     })
   }
@@ -98,13 +101,15 @@ class Hall extends React.Component {
       database.collection("orders").add({
         name: this.state.name,
         client: this.state.client,
-        order: this.state.order
+        order: this.state.order,
+        date: this.state.date
       })
         .then(() => {
-          this.setState({ client: "", order: [] })
+          this.setState({ client: "", order: [], date: "" })
         })
     }
   }
+
 
   render() {
     const orderTotal = this.state.order.reduce((acc, cur) => {
@@ -130,7 +135,7 @@ class Hall extends React.Component {
             <Col className="ml-1 p-0">
               <Card className="">
                 <Card.Body>
-                  <p className="red-text ml-2 mt-1">Pedido</p>
+                  <p className="red-text text-large font-weight-bold ml-2 mt-1">Pedido</p>
 
                   <input onChange={(event) => this.handleChange(event, "client")} value={this.state.client} className="input-border grey-text ml-2 mb-5" type="text" placeholder="Nome do Cliente" />
 
@@ -154,8 +159,8 @@ class Hall extends React.Component {
                   })
                   }
                   <div className="d-flex flex-column">
-                    <p className="grey-text ml-2 mt-4 ml-auto">Total: R$ {orderTotal},00</p>
-                    <button className="btn btn-success white-text p-1" onClick={this.sendOrder}>Enviar Pedido</button>
+                    <p className="grey-text text-large font-weight-bold ml-2 mt-4 ml-auto">Total: R$ {orderTotal},00</p>
+                    <button className="btn-success rounded white-text text-large p-1" onClick={this.sendOrder}>Enviar Pedido</button>
                   </div>
                 </Card.Body>
               </Card>

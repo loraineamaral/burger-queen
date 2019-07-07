@@ -14,7 +14,7 @@ function Nav (props) {
               <img src={logo} alt="Logo" className="w-25" />
               <span className="ml-5 white-text">Olá, {props.data.name}</span>
             </Navbar.Brand>
-            <button onClick={props.logout} className="red-text ml-auto btn btn-light">Sair</button>
+            <button onClick={props.logout} className="red-text ml-auto font-weight-bold btn btn-light">Sair</button>
           </Navbar>
         </div>
     )

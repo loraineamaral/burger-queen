@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from "../firebaseConfig";
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, TimerExample } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Nav from "../components/nav"
 import withFirebaseAuth from 'react-with-firebase-auth';
@@ -15,7 +15,9 @@ class Kitchen extends React.Component {
     this.logout = this.logout.bind(this);
     this.state = {
       order: [],
-      name: ''
+      name: '',
+      date: '',
+      seconds: 0
     };
   }
 
@@ -28,22 +30,40 @@ class Kitchen extends React.Component {
             name: name
           });
         });
-    })
-    database.collection("orders").get()
+    });
+    database.collection("orders").orderBy('date').get()
       .then((querySnapshot) => {
         const orders = querySnapshot.docs.map(doc => doc.data());
-        this.setState({ order: orders })
+        this.setState({
+          order: orders,
+          seconds: 0,
+        });
       })
+      .then(() => {
+        this.interval = setInterval(() => this.tick(), 1000);
+      });
   }
-
 
   logout() {
     firebase.auth().signOut()
       .then(this.props.history.push(`/`))
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  tick() {
+    this.setState(state => ({
+      seconds: state.seconds + 1
+    }));
+  }
+
   render() {
-    const banana = this.state.order;
+    const elapsed = Math.round(this.state.elapsed / 100);
+    const seconds = (elapsed / 10).toFixed(1);    
+
+    const orderCollection = this.state.order;
     return (
       <div className="p-0 m-0 div-height">
         <Nav
@@ -51,17 +71,20 @@ class Kitchen extends React.Component {
           data={this.state}
         />
         <Container>
-            <p className="col-md-12 d-flex justify-content-center red-border text-large red-text">Pedidos</p>
-          <Row className="d-flex flex-wrap mx-1">
-            {banana.map((orderItems, i, j) => {
+          <p className="col-md-12 d-flex justify-content-center red-border text-large red-text">Pedidos</p>
+          <Row className="d-flex flex-wrap flex-row-reverse flex-wrap justify-content-center mx-1">
+            {orderCollection.map((orderItems, i, j) => {
               return (
-                <Card className="mx-1">
-                  <Card.Header className="text-center grey-text-regular">
+                <Card className="mx-1 mt-2 card-width">
+                  <Card.Header className="text-center grey-text-bold">
+
                     <p key={i}>Atendente: {orderItems.name}</p>
                     <p key={j}>Cliente: {orderItems.client}</p>
+                    <p>Tempo: {this.state.seconds} s </p>
+
                   </Card.Header>
-                  <Card.Body className="grey-text-regular text-small bg-white">
-                    {orderItems.order.map((item, i, j) => {
+                  <Card.Body className="grey-text-bold text-small bg-white">
+                    {orderItems.order.map((item, i, j, k) => {
                       return (
                         <Table size="sm">
                           <tbody>
@@ -73,10 +96,15 @@ class Kitchen extends React.Component {
                         </Table>
                       )
                     })}
-                    <Card.Footer className="bg-white d-flex justify-content-center">
-                    <Button className="btn btn-success white-text p-1">Servir</Button>
-                    </Card.Footer>
                   </Card.Body>
+                  <Card.Footer className="bg-white d-flex flex-column border-0 justify-content-center">
+                    {/* {orderCollection.map((item, i) => {
+                        return(
+                        
+                        )
+                      })} */}
+                    <Button className="btn btn-success white-text justify-content-center  mt-auto p-1">Servir</Button>
+                  </Card.Footer>
                 </Card>
               )
             })
@@ -92,4 +120,3 @@ class Kitchen extends React.Component {
 export default withFirebaseAuth({
   firebaseAppAuth,
 })(Kitchen);
-
