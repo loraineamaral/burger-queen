@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from "../firebaseConfig";
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, TimerExample } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Nav from "../components/nav"
 import withFirebaseAuth from 'react-with-firebase-auth';
@@ -16,7 +16,8 @@ class Kitchen extends React.Component {
     this.state = {
       order: [],
       name: '',
-      date: ''
+      date: '',
+      seconds: 0
     };
   }
 
@@ -29,14 +30,18 @@ class Kitchen extends React.Component {
             name: name
           });
         });
-    })
+    });
     database.collection("orders").orderBy('date').get()
       .then((querySnapshot) => {
         const orders = querySnapshot.docs.map(doc => doc.data());
         this.setState({
-          order: orders
-        })
+          order: orders,
+          seconds: 0,
+        });
       })
+      .then(() => {
+        this.interval = setInterval(() => this.tick(), 1000);
+      });
   }
 
   logout() {
@@ -44,9 +49,21 @@ class Kitchen extends React.Component {
       .then(this.props.history.push(`/`))
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  tick() {
+    this.setState(state => ({
+      seconds: state.seconds + 1
+    }));
+  }
+
   render() {
+    const elapsed = Math.round(this.state.elapsed / 100);
+    const seconds = (elapsed / 10).toFixed(1);    
+
     const orderCollection = this.state.order;
-    console.log(orderCollection)
     return (
       <div className="p-0 m-0 div-height">
         <Nav
@@ -63,6 +80,7 @@ class Kitchen extends React.Component {
 
                     <p key={i}>Atendente: {orderItems.name}</p>
                     <p key={j}>Cliente: {orderItems.client}</p>
+                    <p>Tempo: {this.state.seconds} s </p>
 
                   </Card.Header>
                   <Card.Body className="grey-text-bold text-small bg-white">
