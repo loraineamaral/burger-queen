@@ -10,17 +10,17 @@ import regularMenu from "../components/regularMenu"
       <Card className="" >
       <Card.Body>
 
-        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3 grey-text">
+        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3 grey-text font-weight-bold text-large">
           <Tab eventKey="home" title="Café da Manhã">
             {breakfastMenu.map((product, i, j) => {
               return (
 
                 <Card className="m-1 d-inline-flex">
-                  <Card.Body className="d-flex flex-column ">
+                  <Card.Body className="d-flex flex-column card-width">
 
                     <img src={product.foto} alt="Logo" className="img-size" />
 
-                    <Card.Text className="d-flex flex-column grey-text text-center text-small">
+                    <Card.Text className="d-flex flex-column flex-wrap grey-text-bold text-center text-small">
                       <span className="">{product.nome}</span>
                       <span className=""> R$ {product.preco},00 </span>
                     </Card.Text>
@@ -40,11 +40,11 @@ import regularMenu from "../components/regularMenu"
               return (
 
                 <Card className="m-1 d-inline-flex">
-                  <Card.Body className="d-flex flex-column ">
+                  <Card.Body className="d-flex flex-column card-width">
 
                     <img src={product.foto} alt="Logo" className="img-size" />
 
-                    <Card.Text className="d-flex flex-column grey-text text-center text-small">
+                    <Card.Text className="d-flex flex-column grey-text text-center text-small font-weight-bold">
                       <span className="">{product.nome}</span>
                       <span className=""> R$ {product.preco},00 </span>
                     </Card.Text>

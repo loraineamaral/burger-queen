@@ -4,13 +4,14 @@
  }
 
  .red-border{
-   border: 3px solid rgb(144, 0, 0);
-   border-radius: 20px
+   border: 0.18rem solid rgb(144, 0, 0);
+   border-radius: 1.25rem
  }
 
  .red-text{
-  font-family: 'Acme', sans-serif;
+  font-family: 'Lato', sans-serif;
   color: rgb(144, 0, 0)!important;
+  font-weight: bold;
  }
 
  .white-text{
@@ -23,7 +24,7 @@
   color:rgb(73, 80, 87)
  }
 
- .grey-text-regular{
+ .grey-text-bold{
    font-family: 'Lato';
    color: rgb(73, 80, 87);
    font-weight: bold;
@@ -46,12 +47,12 @@
 }
 
 .img-size{
-  width: 100px;
-  height: 100px;  
+  width: 6.25rem;
+  height: 6.25rem;  
 }
 
 .text-small{
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .text-large{
@@ -59,8 +60,8 @@
 }
 
 .btn-border{
-  border: 2px solid rgb(144, 0, 0);
-  border-radius: 10px;
+  border: 0.125rem solid rgb(144, 0, 0);
+  border-radius: 0.625rem;
   background-color: transparent;
 }
 
@@ -69,16 +70,22 @@
 }
 
 .border-card{
-  border: 2px solid rgb(73, 80, 87);
+  border: 0.125rem solid rgb(73, 80, 87);
 }
 
 .input-border{
   border: none;
-  border-bottom: 2px solid rgb(73, 80, 87);
+  border-bottom: 0.125rem solid rgb(73, 80, 87);
   color: black
   
 }
 
 ::placeholder{
   color: rgb(73, 80, 87);  
+  font-family: 'Lato';
+  font-weight: bold;
+}
+
+.card-width{
+  width: 12rem;
 }

@@ -15,7 +15,8 @@ class Kitchen extends React.Component {
     this.logout = this.logout.bind(this);
     this.state = {
       order: [],
-      name: ''
+      name: '',
+      date: ''
     };
   }
 
@@ -29,13 +30,14 @@ class Kitchen extends React.Component {
           });
         });
     })
-    database.collection("orders").get()
+    database.collection("orders").orderBy('date').get()
       .then((querySnapshot) => {
         const orders = querySnapshot.docs.map(doc => doc.data());
-        this.setState({ order: orders })
+        this.setState({ 
+          order: orders, 
+        })
       })
   }
-
 
   logout() {
     firebase.auth().signOut()
@@ -43,7 +45,8 @@ class Kitchen extends React.Component {
   }
 
   render() {
-    const banana = this.state.order;
+    const orderCollection = this.state.order;
+    console.log(orderCollection)
     return (
       <div className="p-0 m-0 div-height">
         <Nav
@@ -52,15 +55,16 @@ class Kitchen extends React.Component {
         />
         <Container>
             <p className="col-md-12 d-flex justify-content-center red-border text-large red-text">Pedidos</p>
-          <Row className="d-flex flex-wrap mx-1">
-            {banana.map((orderItems, i, j) => {
+          <Row className="d-flex flex-wrap flex-row-reverse flex-wrap justify-content-center mx-1">
+            {orderCollection.map((orderItems, i, j, k) => {
               return (
-                <Card className="mx-1">
-                  <Card.Header className="text-center grey-text-regular">
+                <Card className="mx-1 mt-2 card-width">
+                  <Card.Header className="text-center grey-text-bold">
+                    {/* <p>Atendente: {orderItems.date}</p> */}
                     <p key={i}>Atendente: {orderItems.name}</p>
                     <p key={j}>Cliente: {orderItems.client}</p>
                   </Card.Header>
-                  <Card.Body className="grey-text-regular text-small bg-white">
+                  <Card.Body className="grey-text-bold text-small bg-white">
                     {orderItems.order.map((item, i, j) => {
                       return (
                         <Table size="sm">
@@ -73,10 +77,10 @@ class Kitchen extends React.Component {
                         </Table>
                       )
                     })}
-                    <Card.Footer className="bg-white d-flex justify-content-center">
-                    <Button className="btn btn-success white-text p-1">Servir</Button>
-                    </Card.Footer>
                   </Card.Body>
+                    <Card.Footer className="bg-white d-flex flex-column border-0 justify-content-center">
+                    <Button className="btn btn-success white-text justify-content-center  mt-auto p-1">Servir</Button>
+                    </Card.Footer>
                 </Card>
               )
             })
@@ -84,7 +88,6 @@ class Kitchen extends React.Component {
 
           </Row>
         </Container>
-
       </div>
     );
   }
@@ -93,4 +96,3 @@ class Kitchen extends React.Component {
 export default withFirebaseAuth({
   firebaseAppAuth,
 })(Kitchen);
-

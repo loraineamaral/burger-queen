@@ -21,7 +21,7 @@ const regularMenu = [
     foto: foto6
   },
   {
-    nome: "Batata frita",
+    nome: "Batatinha frita",
     preco: 5.00,
     foto: foto7
   },
