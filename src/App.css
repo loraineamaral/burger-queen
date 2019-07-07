@@ -20,11 +20,12 @@
  }
 
  .grey-text{
+
   font-family: 'Lato', sans-serif;
   color:rgb(73, 80, 87)
  }
 
- .grey-text-bold{
+.grey-text-bold{
    font-family: 'Lato';
    color: rgb(73, 80, 87);
    font-weight: bold;
@@ -54,6 +55,7 @@
 .text-small{
   font-size: 1rem;
 }
+
 
 .text-large{
   font-size: 1.2rem;
