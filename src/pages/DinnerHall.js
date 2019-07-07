@@ -17,9 +17,8 @@ class Hall extends React.Component {
       order: [],
       client: '',
       name: '',
-      now: ''
+      date: new Date().toLocaleString()
     };
-    this.interval = null;
   }
 
   handleChange = (event, element) => {
@@ -41,15 +40,8 @@ class Hall extends React.Component {
           const name = querySnapshot.data().name
           this.setState({
             name: name,
-            now: new Date()
           });
         });
-      const self = this;
-      self.interval = setInterval(function () {
-        self.setState({
-          now: new Date(),
-        });
-      }, 1000);
     })
   }
 
@@ -107,7 +99,7 @@ class Hall extends React.Component {
         name: this.state.name,
         client: this.state.client,
         order: this.state.order,
-        date: this.state.now
+        date: this.state.date
       })
         .then(() => {
           this.setState({ client: "", order: [], date: "" })

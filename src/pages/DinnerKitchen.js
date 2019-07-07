@@ -33,8 +33,8 @@ class Kitchen extends React.Component {
     database.collection("orders").orderBy('date').get()
       .then((querySnapshot) => {
         const orders = querySnapshot.docs.map(doc => doc.data());
-        this.setState({ 
-          order: orders, 
+        this.setState({
+          order: orders
         })
       })
   }
@@ -54,18 +54,19 @@ class Kitchen extends React.Component {
           data={this.state}
         />
         <Container>
-            <p className="col-md-12 d-flex justify-content-center red-border text-large red-text">Pedidos</p>
+          <p className="col-md-12 d-flex justify-content-center red-border text-large red-text">Pedidos</p>
           <Row className="d-flex flex-wrap flex-row-reverse flex-wrap justify-content-center mx-1">
-            {orderCollection.map((orderItems, i, j, k) => {
+            {orderCollection.map((orderItems, i, j) => {
               return (
                 <Card className="mx-1 mt-2 card-width">
                   <Card.Header className="text-center grey-text-bold">
-                    {/* <p>Atendente: {orderItems.date}</p> */}
+
                     <p key={i}>Atendente: {orderItems.name}</p>
                     <p key={j}>Cliente: {orderItems.client}</p>
+
                   </Card.Header>
                   <Card.Body className="grey-text-bold text-small bg-white">
-                    {orderItems.order.map((item, i, j) => {
+                    {orderItems.order.map((item, i, j, k) => {
                       return (
                         <Table size="sm">
                           <tbody>
@@ -78,9 +79,14 @@ class Kitchen extends React.Component {
                       )
                     })}
                   </Card.Body>
-                    <Card.Footer className="bg-white d-flex flex-column border-0 justify-content-center">
+                  <Card.Footer className="bg-white d-flex flex-column border-0 justify-content-center">
+                    {/* {orderCollection.map((item, i) => {
+                        return(
+                        
+                        )
+                      })} */}
                     <Button className="btn btn-success white-text justify-content-center  mt-auto p-1">Servir</Button>
-                    </Card.Footer>
+                  </Card.Footer>
                 </Card>
               )
             })
