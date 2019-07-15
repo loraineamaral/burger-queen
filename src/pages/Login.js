@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from './Modal'
 import firebase from "../firebaseConfig";
-import {Form, Col} from 'react-bootstrap';
+import { Form, Col } from 'react-bootstrap';
 import logo from '../assets/img/logo-large.png';
 import withFirebaseAuth from 'react-with-firebase-auth';
 
@@ -59,7 +59,6 @@ class Login extends React.Component {
         database.collection("users").doc(id).get()
           .then(resp => {
             const data = resp.data();
-
             this.props.history.push(`/${data.place}`);
           })
 
@@ -96,7 +95,7 @@ class Login extends React.Component {
                   <Form.Control className="white-text" value={this.state.passwordlogin} onChange={(event) => this.handleChange(event, "passwordlogin")} type="password" placeholder="Digite sua Senha" />
                 </Form.Group>
                 <div className="d-flex flex-column justify-content-around">
-                  <button type="submit" className="m-2 bg-white red-text red-border p-2" onClick={(event) => this.signIn(event)}b>Entrar</button>
+                  <button type="submit" className="m-2 bg-white red-text red-border p-2" onClick={(event) => this.signIn(event)} b>Entrar</button>
                   <button type="button" className="mx-2 mt-3 bg-red white-text border-0" onClick={this.handleShow}><u>Cadastrar</u></button>
                 </div>
               </Form>
