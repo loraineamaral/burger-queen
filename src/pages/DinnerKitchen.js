@@ -61,7 +61,7 @@ class Kitchen extends React.Component {
     }));
   }
 
-  // serveOrder = (event) => {
+  // serveOrder = (index) => {
   //   event.preventDefault();
   //     database.collection("orders").add({
   //       time: this.state.seconds
@@ -113,7 +113,7 @@ class Kitchen extends React.Component {
                         
                         )
                       })} */}
-                    <Button className="btn btn-success white-text justify-content-center  mt-auto p-1" onClick={this.serveOrder}>Servir</Button>
+                    <Button className="btn btn-success white-text justify-content-center  mt-auto p-1" onClick={() => this.serveOrder(i)}>Servir</Button>
                   </Card.Footer>
                 </Card>
               )
