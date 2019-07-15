@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from "../firebaseConfig";
-import { Table, Button, TimerExample } from 'react-bootstrap';
+import { Table, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Nav from "../components/nav"
 import withFirebaseAuth from 'react-with-firebase-auth';
@@ -17,6 +17,8 @@ class Kitchen extends React.Component {
       order: [],
       name: '',
       date: '',
+      ready: [],
+      time: '',
       seconds: 0
     };
   }
@@ -59,10 +61,18 @@ class Kitchen extends React.Component {
     }));
   }
 
-  render() {
-    const elapsed = Math.round(this.state.elapsed / 100);
-    const seconds = (elapsed / 10).toFixed(1);    
+  // serveOrder = (event) => {
+  //   event.preventDefault();
+  //     database.collection("orders").add({
+  //       time: this.state.seconds
+  //     })
+  //       .then(() => {
+  //         this.setState({ client: "", order: [], date: "" })
+  //       })
+  //   }
 
+
+  render() {
     const orderCollection = this.state.order;
     return (
       <div className="p-0 m-0 div-height">
@@ -75,12 +85,12 @@ class Kitchen extends React.Component {
           <Row className="d-flex flex-wrap flex-row-reverse flex-wrap justify-content-center mx-1">
             {orderCollection.map((orderItems, i, j) => {
               return (
-                <Card className="mx-1 mt-2 card-width">
+                <Card className="mx-1 mt-2 card-large">
                   <Card.Header className="text-center grey-text-bold">
 
                     <p key={i}>Atendente: {orderItems.name}</p>
                     <p key={j}>Cliente: {orderItems.client}</p>
-                    <p>Tempo: {this.state.seconds} s </p>
+                    <p className="red-text">Tempo: {this.state.seconds} s </p>
 
                   </Card.Header>
                   <Card.Body className="grey-text-bold text-small bg-white">
@@ -103,7 +113,7 @@ class Kitchen extends React.Component {
                         
                         )
                       })} */}
-                    <Button className="btn btn-success white-text justify-content-center  mt-auto p-1">Servir</Button>
+                    <Button className="btn btn-success white-text justify-content-center  mt-auto p-1" onClick={this.serveOrder}>Servir</Button>
                   </Card.Footer>
                 </Card>
               )

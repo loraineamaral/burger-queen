@@ -52,7 +52,7 @@
 }
 
 .text-small{
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .text-large{
@@ -87,5 +87,9 @@
 }
 
 .card-width{
+  width: 9rem;
+}
+
+.card-large{
   width: 12rem;
 }
