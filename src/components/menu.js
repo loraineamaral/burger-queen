@@ -21,6 +21,7 @@ import regularMenu from "../components/regularMenu"
                     <img src={product.foto} alt="Logo" className="img-size" />
 
                     <Card.Text className="d-flex flex-column grey-text-bold text-center text-small">
+
                       <span className="">{product.nome}</span>
                       <span className=""> R$ {product.preco},00 </span>
                     </Card.Text>
