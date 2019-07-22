@@ -144,7 +144,7 @@ class Hall extends React.Component {
                         <tbody>
                           <tr className="grey-text text-small">
                             <td className="text-left col-md-8" key={i}>{product.nome} </td>
-                            <td className="text-cente col-md-2" key={j}>{product.quantity}</td>
+                            <td className="text-center col-md-2" key={j}>{product.quantity}</td>
                             <td className="text-right col-md-2" key={k}>{product.preco * product.quantity},00</td>
                           </tr>
                         </tbody>

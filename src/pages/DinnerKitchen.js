@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from "../firebaseConfig";
-import { Table, Button} from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Nav from "../components/nav"
 import withFirebaseAuth from 'react-with-firebase-auth';
@@ -61,19 +61,19 @@ class Kitchen extends React.Component {
     }));
   }
 
-  // serveOrder = (index) => {
-  //   event.preventDefault();
-  //     database.collection("orders").add({
-  //       time: this.state.seconds
-  //     })
-  //       .then(() => {
-  //         this.setState({ client: "", order: [], date: "" })
-  //       })
-  //   }
+  serveOrder = (event) => {
+    database.collection("orders").add({
+      time: this.state.seconds
+    })
+      .then(() => {
+        // console.log(orderCollection)
+      })
+  }
 
 
   render() {
     const orderCollection = this.state.order;
+
     return (
       <div className="p-0 m-0 div-height">
         <Nav
@@ -108,12 +108,8 @@ class Kitchen extends React.Component {
                     })}
                   </Card.Body>
                   <Card.Footer className="bg-white d-flex flex-column border-0 justify-content-center">
-                    {/* {orderCollection.map((item, i) => {
-                        return(
-                        
-                        )
-                      })} */}
-                    <Button className="btn btn-success white-text justify-content-center  mt-auto p-1" onClick={() => this.serveOrder(i)}>Servir</Button>
+
+                    <Button className="btn btn-success white-text justify-content-center mt-auto p-1" onClick={(event) => this.serveOrder()}>Servir</Button>
                   </Card.Footer>
                 </Card>
               )

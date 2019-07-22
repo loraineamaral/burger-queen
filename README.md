@@ -49,10 +49,6 @@ adicionar e a interface deve mostrar o _resumo do pedido_ com o custo total.
 ## Objetivos de aprendizagem
 
 O objetivo principal é aprender a construir uma interface web usando React. Esse framework front-end ataca o seguinte problema: **como manter a interface e estado sincronizados**. Portanto, esta experiência espera familiarizá-la com o conceito de estado da tela, e como cada mudança no estado vai refletir na interface (por exemplo, toda vez que adicionamos um _produto_ para um _pedido_, a interface deve atualizar a lista de pedidos e o total). A interface deve ser projetada especificamente para rodar em **tablets**.
-
-Como objetivo **SECUNDÁRIO**, você deve seguir as recomendações para PWAs (_Progressive Web Apps_), que inclui conceitos como **offline**. Para orientá-las sobre este tema,recomendamos que você use [Lighthouse](https://developers.google.com/web/tools/lighthouse/?hl=es), que é uma ferramenta do Google que nos ajuda a garantir que nossos aplicativos web sigam "boas práticas".
-
-Tópicos: _react_, _pwa_, _offline-first_, _service-worker_.
  
 
 ## Checklist
