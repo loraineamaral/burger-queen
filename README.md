@@ -76,5 +76,18 @@ O objetivo principal é aprender a construir uma interface web usando React. Ess
 * [ ] Ver histórico dos pedidos.
 
 
+## Resultado Final
 
+**Para acessar o produto, use o link: https://burguer-queen-la.firebaseapp.com**
+
+ Para fazer login, você pode usar os seguintes dados:
+
+ **Usuário: salao@email.com** (Para acessar o salão)
+
+ **Usuário: cozinha@email.com** (Para acessar a cozinha)
+
+ **Senha: 123456** (Para ambos acessos)
+
+![print-login-and-breakfast](src/assets/img/bq-screen-1.png)
+![print-regular-and-kitchen](src/assets/img/bq-screen-2.png)
 
